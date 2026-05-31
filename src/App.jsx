@@ -449,18 +449,30 @@ export default function App() {
             </div>
             <div style={{ display:"flex", gap:48, flexWrap:"wrap" }}>
               {[
-                { title:"Producto", links:["Funciones","Planes","Demo"] },
-                { title:"Legal", links:["Política de privacidad","Términos y condiciones","Licencias"] },
-                { title:"Soporte", links:["Centro de ayuda","soporteseguragenda@gmail.com","Acerca de"] },
+                { title:"Producto", links:[
+                  { label:"Funciones", href:"#funciones" },
+                  { label:"Planes", href:"#planes" },
+                  { label:"Demo", href:"#demo" },
+                ]},
+                { title:"Legal", links:[
+                  { label:"Política de privacidad", href:"/privacidad" },
+                  { label:"Términos y condiciones", href:"#" },
+                  { label:"Licencias", href:"#" },
+                ]},
+                { title:"Soporte", links:[
+                  { label:"Centro de ayuda", href:"#" },
+                  { label:"soporteseguragenda@gmail.com", href:"mailto:soporteseguragenda@gmail.com" },
+                  { label:"Acerca de", href:"#" },
+                ]},
               ].map(col => (
                 <div key={col.title}>
                   <div style={{ color:"white", fontSize:13, fontWeight:600, marginBottom:14 }}>{col.title}</div>
                   {col.links.map(l => (
-                    <div key={l} style={{marginBottom:10}}>
-                      <a href="#" style={{ color:"rgba(255,255,255,0.55)", fontSize:13, textDecoration:"none" }}
+                    <div key={l.label} style={{marginBottom:10}}>
+                      <a href={l.href} style={{ color:"rgba(255,255,255,0.55)", fontSize:13, textDecoration:"none" }}
                         onMouseEnter={e=>e.target.style.color="rgba(255,255,255,0.9)"}
                         onMouseLeave={e=>e.target.style.color="rgba(255,255,255,0.55)"}
-                      >{l}</a>
+                      >{l.label}</a>
                     </div>
                   ))}
                 </div>
