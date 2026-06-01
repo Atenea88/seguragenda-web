@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acerca de — SegurAgenda</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F7FF; color: #333; }
+    nav { background: #1A3A7A; padding: 16px 32px; display: flex; align-items: center; gap: 12px; }
+    nav span { font-family: Georgia, serif; font-size: 20px; color: white; font-weight: 600; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; margin-left: auto; }
+    nav a:hover { color: white; }
+    .hero { background: linear-gradient(135deg, #1A3A7A, #2952CC); padding: 72px 24px 0; text-align: center; color: white; }
+    .hero img { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; margin-bottom: 12px; }
+    .hero p { font-size: 16px; color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .hero-badge { padding: 20px 0 32px; }
+    .hero-badge span { display: inline-block; background: rgba(255,255,255,0.15); color: white; font-size: 13px; font-weight: 600; padding: 6px 18px; border-radius: 20px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+    .card { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px rgba(41,82,204,0.08); margin-bottom: 24px; }
+    h2 { font-family: Georgia, serif; font-size: 20px; color: #1A3A7A; font-weight: 400; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #F0F4FF; }
+    p { font-size: 15px; line-height: 1.75; color: #555; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 16px; }
+    .tech-item { background: #F5F7FF; border-radius: 12px; padding: 16px; text-align: center; font-size: 14px; color: #1A3A7A; font-weight: 600; }
+    .tech-item span { display: block; font-size: 12px; color: #888; font-weight: 400; margin-top: 4px; }
+    .dev-card { display: flex; align-items: flex-start; gap: 20px; }
+    .dev-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #1A3A7A, #2952CC); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .dev-info h3 { font-size: 17px; font-weight: 600; color: #1A3A7A; margin-bottom: 4px; }
+    .dev-info p { font-size: 14px; color: #666; margin-bottom: 12px; }
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-link { font-size: 13px; color: #2952CC; text-decoration: none; background: #F0F4FF; padding: 5px 14px; border-radius: 20px; }
+    .social-text { font-size: 13px; color: #888; background: #F5F5F5; padding: 5px 14px; border-radius: 20px; cursor: default; }
+    .contact-box { background: linear-gradient(135deg, #1A3A7A, #2952CC); border-radius: 16px; padding: 32px; text-align: center; color: white; }
+    .contact-box h3 { font-family: Georgia, serif; font-size: 22px; font-weight: 400; margin-bottom: 10px; }
+    .contact-box p { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 0; }
+    .contact-box a { color: #7CCCFF; text-decoration: none; }
+    footer { background: #1A3A7A; color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <img src="/images/seguragenda_icon.png" alt="SegurAgenda" style="width:32px;height:32px;border-radius:8px;">
+  <span>SegurAgenda</span>
+  <a href="/">← Volver al inicio</a>
+</nav>
+
+<div class="hero">
+  <img src="/images/seguragenda_icon.png" alt="SegurAgenda">
+  <h1>Acerca de SegurAgenda</h1>
+  <p>Una herramienta profesional para agentes de seguros, construida con pasión desde Barcelona.</p>
+  <div class="hero-badge"><span>🇪🇸 Hecho en España</span></div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Nuestra misión</h2>
+    <p>SegurAgenda nace con una misión clara: dar a los agentes de seguros independientes y pequeños equipos comerciales una herramienta profesional, moderna y accesible para gestionar toda su cartera desde el móvil.</p>
+    <p>Creemos que la tecnología debe simplificar el trabajo, no complicarlo. Por eso hemos diseñado cada pantalla pensando en el día a día real de un agente de seguros.</p>
+  </div>
+
+  <div class="card">
+    <h2>Visión</h2>
+    <p>Queremos convertir SegurAgenda en la plataforma de referencia para agentes y equipos comerciales del sector seguros en España y Latinoamérica. Una herramienta que crezca con el profesional, desde el primer cliente hasta la cartera más grande.</p>
+  </div>
+
+  <div class="card">
+    <h2>Tecnología</h2>
+    <p>SegurAgenda está construido con tecnologías modernas y de primer nivel:</p>
+    <div class="tech-grid">
+      <div class="tech-item">Flutter<span>App móvil</span></div>
+      <div class="tech-item">Supabase<span>Backend & Auth</span></div>
+      <div class="tech-item">Stripe<span>Pagos seguros</span></div>
+      <div class="tech-item">Firebase<span>Notificaciones</span></div>
+      <div class="tech-item">React<span>Landing web</span></div>
+      <div class="tech-item">Vercel<span>Despliegue</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>El equipo</h2>
+    <div class="dev-card">
+      <div class="dev-avatar">👩‍💻</div>
+      <div class="dev-info">
+        <h3>Isabel — Fundadora y desarrolladora</h3>
+        <p>Diseño, desarrollo y estrategia de producto. Construyendo SegurAgenda desde Barcelona 🇪🇸</p>
+        <div class="social-links">
+          <a href="https://mail.google.com/mail/?view=cm&to=seguragenda@gmail.com" target="_blank" class="social-link">✉️ Email</a>
+          <a href="https://seguragenda-web.vercel.app" class="social-link">🌐 Web</a>
+          <span class="social-text">💼 LinkedIn (próximamente)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Versión actual</h2>
+    <p><strong>SegurAgenda v1.0</strong> — Disponible para Android.</p>
+    <p>Desarrollado por <strong>Dolphin Surround</strong> · Barcelona, España · 2026</p>
+  </div>
+
+  <div class="contact-box">
+    <h3>¿Hablamos?</h3>
+    <p>Escríbenos a <a href="https://mail.google.com/mail/?view=cm&to=seguragenda@gmail.com" target="_blank">seguragenda@gmail.com</a><br>
+    o a <a href="https://mail.google.com/mail/?view=cm&to=soporteseguragenda@gmail.com" target="_blank">soporteseguragenda@gmail.com</a></p>
+  </div>
+
+</div>
+
+<footer>© 2026 Dolphin Surround · SegurAgenda · <a href="/">Inicio</a></footer>
+</body>
+</html>

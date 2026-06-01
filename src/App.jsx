@@ -456,13 +456,13 @@ export default function App() {
                 ]},
                 { title:"Legal", links:[
                   { label:"Política de privacidad", href:"/privacidad" },
-                  { label:"Términos y condiciones", href:"#" },
-                  { label:"Licencias", href:"#" },
+                  { label:"Términos y condiciones", href:"/terminos" },
+                  { label:"Licencias", href:"/licencias" },
                 ]},
                 { title:"Soporte", links:[
-                  { label:"Centro de ayuda", href:"#" },
-                  { label:"soporteseguragenda@gmail.com", href:"mailto:soporteseguragenda@gmail.com" },
-                  { label:"Acerca de", href:"#" },
+                  { label:"Centro de ayuda", href:"https://mail.google.com/mail/?view=cm&to=soporteseguragenda@gmail.com" },
+                  { label:"soporteseguragenda@gmail.com", href:"https://mail.google.com/mail/?view=cm&to=soporteseguragenda@gmail.com" },
+                  { label:"Acerca de", href:"/acerca-de" },
                 ]},
               ].map(col => (
                 <div key={col.title}>

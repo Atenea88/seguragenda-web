@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Licencias — SegurAgenda</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F7FF; color: #333; }
+    nav { background: #1A3A7A; padding: 16px 32px; display: flex; align-items: center; gap: 12px; }
+    nav span { font-family: Georgia, serif; font-size: 20px; color: white; font-weight: 600; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; margin-left: auto; }
+    nav a:hover { color: white; }
+    .hero { background: linear-gradient(135deg, #1A3A7A, #2952CC); padding: 60px 24px 48px; text-align: center; color: white; }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; margin-bottom: 12px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.95); }
+    .container { max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+    .card { background: white; border-radius: 16px; padding: 32px 40px; box-shadow: 0 4px 20px rgba(41,82,204,0.08); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+    .card-info h3 { font-size: 16px; font-weight: 600; color: #1A3A7A; margin-bottom: 4px; }
+    .card-info p { font-size: 13px; color: #888; }
+    .badge { display: inline-block; background: #F0F4FF; color: #2952CC; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+    .intro { background: white; border-radius: 16px; padding: 32px 40px; box-shadow: 0 4px 20px rgba(41,82,204,0.08); margin-bottom: 24px; }
+    .intro p { font-size: 15px; line-height: 1.75; color: #555; }
+    .updated { text-align: center; font-size: 13px; color: #999; margin-bottom: 32px; }
+    footer { background: #1A3A7A; color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  </style>
+</head>
+<body>
+<nav>
+  <img src="/images/seguragenda_icon.png" alt="SegurAgenda" style="width:32px;height:32px;border-radius:8px;">
+  <span>SegurAgenda</span>
+  <a href="/">← Volver al inicio</a>
+</nav>
+<div class="hero">
+  <h1>Licencias de software</h1>
+  <p>Tecnologías y librerías de código abierto utilizadas en SegurAgenda.</p>
+</div>
+<div class="container">
+  <p class="updated">Última actualización: 1 de junio de 2026</p>
+  <div class="intro">
+    <p>SegurAgenda está construido sobre tecnologías de código abierto. A continuación se detallan las principales librerías utilizadas y sus licencias correspondientes.</p>
+  </div>
+
+  <div class="card"><div class="card-info"><h3>Flutter</h3><p>Framework de desarrollo multiplataforma — Google</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>Riverpod</h3><p>Gestión de estado para Flutter</p></div><span class="badge">MIT</span></div>
+  <div class="card"><div class="card-info"><h3>GoRouter</h3><p>Navegación declarativa para Flutter</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>Supabase Flutter</h3><p>Cliente oficial de Supabase para Flutter</p></div><span class="badge">MIT</span></div>
+  <div class="card"><div class="card-info"><h3>firebase_core &amp; firebase_messaging</h3><p>Notificaciones push — Google Firebase / FlutterFire</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>flutter_stripe</h3><p>Integración de pagos con Stripe</p></div><span class="badge">MIT</span></div>
+  <div class="card"><div class="card-info"><h3>fl_chart</h3><p>Gráficos y visualizaciones de datos</p></div><span class="badge">MIT</span></div>
+  <div class="card"><div class="card-info"><h3>intl</h3><p>Internacionalización y formateo de fechas</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>url_launcher</h3><p>Apertura de URLs externas</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>shared_preferences</h3><p>Almacenamiento local de preferencias</p></div><span class="badge">BSD 3-Clause</span></div>
+  <div class="card"><div class="card-info"><h3>React</h3><p>Librería UI para la landing web — Meta</p></div><span class="badge">MIT</span></div>
+  <div class="card"><div class="card-info"><h3>Vite</h3><p>Bundler y servidor de desarrollo</p></div><span class="badge">MIT</span></div>
+</div>
+  <div class="intro" style="margin-top:8px;">
+    <p>Las marcas mencionadas pertenecen a sus respectivos propietarios. SegurAgenda agradece el trabajo de la comunidad open source.</p>
+  </div>
+</div>
+<footer>© 2026 Dolphin Surround · SegurAgenda · <a href="/">Inicio</a></footer>
+</body>
+</html>
