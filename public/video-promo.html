@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SegurAgenda — Video Promo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  #stage {
+    width: 390px;
+    height: 844px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .scene.active { opacity: 1; }
+
+  /* ── SCENE 1: INTRO ── */
+  #s1 {
+    background: linear-gradient(160deg, #0d1f5c 0%, #1a3a7a 40%, #2952cc 100%);
+  }
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0%   { transform: translateY(100%) scale(0.8); opacity:0; }
+    10%  { opacity:1; }
+    90%  { opacity:0.6; }
+    100% { transform: translateY(-120%) scale(1.2); opacity:0; }
+  }
+  .glow-ring {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(100,150,255,0.2);
+    position: absolute;
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+  .glow-ring:nth-child(2) { width:280px;height:280px; animation-delay:0.5s; }
+  .glow-ring:nth-child(3) { width:360px;height:360px; animation-delay:1s; }
+  @keyframes pulse-ring {
+    0%,100% { opacity:0.3; transform:scale(1); }
+    50%      { opacity:0.6; transform:scale(1.04); }
+  }
+  .s1-logo {
+    width: 96px; height: 96px;
+    border-radius: 24px;
+    box-shadow: 0 0 60px rgba(41,82,204,0.6), 0 20px 40px rgba(0,0,0,0.4);
+    animation: logo-in 1s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    z-index: 2;
+    object-fit: cover;
+  }
+  @keyframes logo-in {
+    to { opacity:1; transform:translateY(0) scale(1); }
+  }
+  .s1-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: white;
+    margin-top: 20px;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.8s ease 0.4s forwards;
+  }
+  .s1-tagline {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    max-width: 260px;
+    line-height: 1.6;
+    margin-top: 14px;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.8s ease 0.7s forwards;
+  }
+  .s1-badge {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.8s ease 1s forwards;
+    backdrop-filter: blur(10px);
+  }
+
+  /* ── SCENE 2–6: FEATURE SCENES ── */
+  .feature-scene {
+    background: linear-gradient(160deg, #0d1f5c 0%, #1a3a7a 50%, #2952cc 100%);
+    padding: 0 28px;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+  .scene-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fade-up 0.6s ease 0.2s forwards;
+  }
+  .scene-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fade-up 0.7s ease 0.35s forwards;
+  }
+  .scene-title em {
+    font-style: normal;
+    color: #7CCCFF;
+  }
+  .scene-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fade-up 0.7s ease 0.5s forwards;
+  }
+  .mockup-wrap {
+    width: 100%;
+    opacity: 0;
+    animation: mockup-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+    transform: translateY(40px);
+  }
+  @keyframes mockup-in {
+    to { opacity:1; transform:translateY(0); }
+  }
+  .mockup-frame {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .mockup-frame img {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── SCENE 7: FINAL CTA ── */
+  #s7 {
+    background: linear-gradient(160deg, #0d1f5c 0%, #1a3a7a 40%, #2952cc 100%);
+  }
+  .cta-logo {
+    width: 80px; height: 80px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(41,82,204,0.5);
+    opacity: 0;
+    animation: logo-in 0.8s ease 0.2s forwards;
+    object-fit: cover;
+    z-index: 2;
+  }
+  .cta-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: white;
+    margin-top: 16px;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.7s ease 0.5s forwards;
+  }
+  .cta-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 8px;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.7s ease 0.7s forwards;
+  }
+  .cta-btn {
+    margin-top: 36px;
+    background: white;
+    color: #1A3A7A;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 40px;
+    border-radius: 30px;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.7s ease 0.9s forwards;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .cta-android {
+    width: 20px; height: 20px;
+    fill: #1A3A7A;
+  }
+  .cta-tagline {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    z-index: 2;
+    opacity: 0;
+    animation: fade-up 0.7s ease 1.1s forwards;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .bg-circles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* Progress bar */
+  #progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.8);
+    width: 0%;
+    transition: width linear;
+    z-index: 100;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Controls */
+  #controls {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 200;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active { background: white; width: 20px; border-radius: 3px; }
+
+  @keyframes fade-up {
+    to { opacity:1; transform:translateY(0); }
+  }
+  .fade-up-init { transform: translateY(20px); }
+
+  /* Scroll shimmer on mockup */
+  .scroll-anim {
+    animation: scroll-up 4s ease-in-out infinite;
+  }
+  @keyframes scroll-up {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-40px); }
+  }
+
+  /* Instruction */
+  #instruction {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div id="instruction">▶ Pulsa Play para iniciar · Graba la pantalla para exportar</div>
+
+<div id="stage">
+  <div id="progress"></div>
+
+  <!-- SCENE 1: INTRO -->
+  <div class="scene active" id="s1">
+    <div class="particles" id="particles"></div>
+    <div class="glow-ring"></div>
+    <div class="glow-ring"></div>
+    <div class="glow-ring"></div>
+    <img class="s1-logo" src="/images/seguragenda_icon.png" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 96 96%22><rect width=%2296%22 height=%2296%22 rx=%2224%22 fill=%22%232952CC%22/><text x=%2248%22 y=%2265%22 text-anchor=%22middle%22 font-size=%2248%22>🛡️</text></svg>'">
+    <div class="s1-brand">SegurAgenda</div>
+    <div class="s1-tagline">La forma moderna de gestionar tu cartera de seguros</div>
+    <div class="s1-badge">🚀 Ya disponible en Android</div>
+  </div>
+
+  <!-- SCENE 2: DASHBOARD -->
+  <div class="scene feature-scene" id="s2">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:300px;height:300px;right:-100px;top:-80px;"></div>
+      <div class="bg-circle" style="width:200px;height:200px;left:-60px;bottom:100px;"></div>
+    </div>
+    <div class="scene-label">Dashboard</div>
+    <div class="scene-title">Controla <em>toda</em><br>tu cartera</div>
+    <div class="scene-sub">Clientes, pólizas y objetivos<br>en un solo panel.</div>
+    <div class="mockup-wrap">
+      <div class="mockup-frame">
+        <img src="/images/dashboard.png" class="scroll-anim" onerror="this.style.height='320px';this.style.background='#1a3a7a'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: CLIENTES -->
+  <div class="scene feature-scene" id="s3">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:250px;height:250px;right:-80px;top:-60px;"></div>
+    </div>
+    <div class="scene-label">Clientes</div>
+    <div class="scene-title">Toda tu cartera<br><em>organizada</em></div>
+    <div class="scene-sub">Fichas completas, acciones<br>rápidas y seguimiento.</div>
+    <div class="mockup-wrap">
+      <div class="mockup-frame">
+        <img src="/images/clientes.png" onerror="this.style.height='320px';this.style.background='#1a3a7a'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: PIPELINE -->
+  <div class="scene feature-scene" id="s4">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:280px;height:280px;left:-100px;bottom:-60px;"></div>
+    </div>
+    <div class="scene-label">Pipeline</div>
+    <div class="scene-title">Convierte más<br><em>presupuestos</em></div>
+    <div class="scene-sub">Gestiona oportunidades<br>y conversiones en tiempo real.</div>
+    <div class="mockup-wrap">
+      <div class="mockup-frame">
+        <img src="/images/pipeline.png" onerror="this.style.height='320px';this.style.background='#1a3a7a'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5: AGENDA -->
+  <div class="scene feature-scene" id="s5">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:220px;height:220px;right:-60px;bottom:80px;"></div>
+    </div>
+    <div class="scene-label">Agenda & Alertas</div>
+    <div class="scene-title">Nunca pierdas<br>una <em>renovación</em></div>
+    <div class="scene-sub">Alertas automáticas y<br>seguimiento inteligente.</div>
+    <div class="mockup-wrap">
+      <div class="mockup-frame">
+        <img src="/images/agenda.png" onerror="this.style.height='320px';this.style.background='#1a3a7a'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6: ESTADÍSTICAS -->
+  <div class="scene feature-scene" id="s6">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:300px;height:300px;right:-120px;top:-100px;"></div>
+    </div>
+    <div class="scene-label">Estadísticas</div>
+    <div class="scene-title">Analiza tu<br><em>rendimiento</em></div>
+    <div class="scene-sub">Conversiones, ingresos<br>y evolución comercial.</div>
+    <div class="mockup-wrap">
+      <div class="mockup-frame">
+        <img src="/images/estadisticas.png" onerror="this.style.height='320px';this.style.background='#1a3a7a'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 7: CTA FINAL -->
+  <div class="scene" id="s7">
+    <div class="bg-circles">
+      <div class="bg-circle" style="width:400px;height:400px;right:-150px;top:-100px;"></div>
+      <div class="bg-circle" style="width:300px;height:300px;left:-120px;bottom:-80px;"></div>
+    </div>
+    <div class="particles" id="particles2"></div>
+    <div class="glow-ring" style="width:160px;height:160px;"></div>
+    <div class="glow-ring" style="width:240px;height:240px;animation-delay:0.5s"></div>
+    <img class="cta-logo" src="/images/seguragenda_icon.png" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 rx=%2220%22 fill=%22%232952CC%22/><text x=%2240%22 y=%2254%22 text-anchor=%22middle%22 font-size=%2240%22>🛡️</text></svg>'">
+    <div class="cta-brand">SegurAgenda</div>
+    <div class="cta-sub">Disponible para Android</div>
+    <div class="cta-btn">
+      <svg class="cta-android" viewBox="0 0 24 24"><path d="M17.523 15.341l1.677-2.906a.5.5 0 00-.865-.499l-1.7 2.945A10.442 10.442 0 0112 14.25c-1.633 0-3.172.39-4.535 1.08L5.765 12.386a.5.5 0 00-.865.499l1.677 2.906A10.5 10.5 0 001.5 24h21a10.5 10.5 0 00-4.977-8.659zM8.25 20.25a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm7.5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM14.795 3.705l1.54-2.668a.375.375 0 10-.649-.375L14.13 3.4a7.503 7.503 0 00-4.26 0L8.314.662a.375.375 0 10-.649.375l1.54 2.668A7.5 7.5 0 004.5 10.5h15a7.5 7.5 0 00-4.705-6.795z"/></svg>
+      Descargar ahora
+    </div>
+    <div class="cta-tagline">Gratis · Sin tarjeta · RGPD compliant</div>
+  </div>
+
+  <!-- dots -->
+  <div id="controls"></div>
+</div>
+
+<!-- Play button outside -->
+<div id="playBtn" style="position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:white;color:#1A3A7A;border:none;border-radius:30px;padding:14px 36px;font-size:16px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.4);display:flex;align-items:center;gap:8px;">
+  ▶ &nbsp;Iniciar vídeo
+</div>
+
+<script>
+const SCENES = ['s1','s2','s3','s4','s5','s6','s7'];
+const DURATIONS = [4000, 5000, 5000, 5000, 5000, 5000, 5000]; // ms per scene
+let current = 0;
+let timer = null;
+let running = false;
+let elapsed = 0;
+let startTime = null;
+
+const total = DURATIONS.reduce((a,b)=>a+b,0);
+
+// Build dots
+const controls = document.getElementById('controls');
+SCENES.forEach((id,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  controls.appendChild(d);
+});
+
+// Particles
+function createParticles(containerId) {
+  const c = document.getElementById(containerId);
+  if(!c) return;
+  for(let i=0;i<12;i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 20 + Math.random()*80;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${6+Math.random()*8}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    c.appendChild(p);
+  }
+}
+createParticles('particles');
+createParticles('particles2');
+
+function goTo(idx) {
+  document.getElementById(SCENES[current]).classList.remove('active');
+  current = idx;
+  const scene = document.getElementById(SCENES[current]);
+  // Reset animations
+  scene.querySelectorAll('[style*="animation"]').forEach(el => {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = '';
+  });
+  scene.classList.add('active');
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
+}
+
+function nextScene() {
+  if(current < SCENES.length-1) {
+    goTo(current+1);
+  } else {
+    stopVideo();
+    document.getElementById('playBtn').innerHTML = '↺ &nbsp;Repetir';
+  }
+}
+
+let progressInterval = null;
+let sceneStart = null;
+
+function startVideo() {
+  running = true;
+  goTo(0);
+  document.getElementById('playBtn').innerHTML = '⏸ &nbsp;Pausar';
+  runScene();
+}
+
+function runScene() {
+  clearInterval(progressInterval);
+  sceneStart = Date.now();
+  const dur = DURATIONS[current];
+
+  progressInterval = setInterval(() => {
+    const passed = Date.now() - sceneStart;
+    // Calculate global progress
+    let globalElapsed = DURATIONS.slice(0, current).reduce((a,b)=>a+b,0) + passed;
+    const pct = Math.min((globalElapsed / total) * 100, 100);
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress').style.transition = 'none';
+
+    if(passed >= dur) {
+      clearInterval(progressInterval);
+      if(current < SCENES.length-1) {
+        goTo(current+1);
+        runScene();
+      } else {
+        stopVideo();
+        document.getElementById('playBtn').innerHTML = '↺ &nbsp;Repetir';
+        document.getElementById('progress').style.width = '100%';
+      }
+    }
+  }, 50);
+}
+
+function stopVideo() {
+  running = false;
+  clearInterval(progressInterval);
+}
+
+document.getElementById('playBtn').onclick = () => {
+  if(!running) {
+    startVideo();
+  } else {
+    stopVideo();
+    document.getElementById('playBtn').innerHTML = '▶ &nbsp;Continuar';
+  }
+};
+</script>
+</body>
+</html>

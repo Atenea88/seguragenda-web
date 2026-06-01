@@ -17,6 +17,10 @@
       "destination": "/acerca-de.html"
     },
     {
+      "source": "/video-promo",
+      "destination": "/video-promo.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
